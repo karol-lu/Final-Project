@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import { Modal, Button, Center, Group } from "@mantine/core";
-import { logoutUser } from "../services/authService";
-import { useNavigate } from "react-router-dom";
-import { PATHS } from "../utils/paths";
-import { AddNewListButton } from "../components/AddNewListButton";
-import { NewTask } from "../components/NewTask";
+import React, { useEffect, useState } from "react";
+
+import { ToDoList } from "../components/ToDoList";
+import styled from "styled-components";
+import { fetchLists } from "../services/listService";
+import { Tabs } from "@mantine/core";
+import { SharedLists } from "../components/SharedLists";
+import { MyLists } from "../components/MyLists";
 
 export const Homepage = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logoutUser({
-      handleSuccess: () => navigate(PATHS.logIn),
-    });
-  };
-
   return (
     <>
-      <Group>
-        <AddNewListButton />
-        <Button onClick={handleLogout}>Logout</Button>
-      </Group>
-      <NewTask />
+      <Wrapper>
+        <Tabs>
+          <Tabs.Tab label="My lists">
+            <MyLists />
+          </Tabs.Tab>
+          <Tabs.Tab label="Shared lists">
+            <SharedLists />{" "}
+          </Tabs.Tab>
+        </Tabs>
+      </Wrapper>
     </>
   );
 };
+
+const Wrapper = styled.div``;

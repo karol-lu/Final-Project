@@ -12,7 +12,7 @@ const defaultValues = {
   id: uuid(),
 };
 
-export const AddNewListButton = () => {
+export const AddNewListModal = () => {
   const [opened, setOpened] = useState(false);
   const [title, setTitle] = useState("");
 

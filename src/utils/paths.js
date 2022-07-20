@@ -1,6 +1,5 @@
 export const PATHS = {
-  homepage: "/dashboard",
-  lists: "/lists",
+  homepage: "/lists",
   listDetails: "/lists/:id",
   logIn: "/",
   profile: "/profile",
