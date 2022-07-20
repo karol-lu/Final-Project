@@ -1,13 +1,21 @@
 import React from "react";
 import { ToDo } from "./ToDo";
 import firebase, { db } from "../utils/firestore";
+import { Button } from "@mantine/core";
 
-export const ToDoList = ({ toDoList }) => {
+export const ToDoList = ({ toDoList, handleToggle, handleFilter }) => {
   return (
     <div>
       {toDoList.map((todo) => {
-        return <ToDo todo={todo} />;
+        return (
+          <ToDo
+            todo={todo}
+            handleToggle={handleToggle}
+            handleFilter={handleFilter}
+          />
+        );
       })}
+      <Button onClick={handleFilter}>Clear Completed</Button>
     </div>
   );
 };

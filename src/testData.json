@@ -1,26 +1,26 @@
 [{
    "id": 1,
    "itemToDo": "coffee",
-   "complete": false
+   "complete": true
 },
 {
     "id":2,
 "itemToDo": "cigarette",
-"complete":false
+"complete": true
 },
 {
     "id":3,
 "itemToDo": "number two",
-"complete":false
+"complete": false
 },
 {
     "id":4,
 "itemToDo": "minor breakdown before work",
-"complete":false
+"complete": false
 },
 {
     "id":5,
 "itemToDo": "rinse and repeat until 70",
-"complete":false
+"complete": false
 }
 ]
