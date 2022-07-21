@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { ToDoListItem } from "./ToDoListItem";
-import firebase, { db } from "../utils/firestore";
 import { Button, TextInput } from "@mantine/core";
 import { v4 as uuid } from "uuid";
 import styled from "styled-components";

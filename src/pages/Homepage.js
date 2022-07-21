@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-
-import { ToDoList } from "../components/ToDoList";
+import React from "react";
 import styled from "styled-components";
-import { fetchLists } from "../services/listService";
 import { Tabs } from "@mantine/core";
 import { SharedLists } from "../components/SharedLists";
 import { MyLists } from "../components/MyLists";

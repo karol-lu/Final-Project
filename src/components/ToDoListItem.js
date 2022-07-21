@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import theme from "../utils/theme";
 export const ToDoListItem = ({ todo, toggleCompleted, removeTask }) => {
   return (
     <ItemWrapper
@@ -14,5 +13,5 @@ export const ToDoListItem = ({ todo, toggleCompleted, removeTask }) => {
 };
 
 const ItemWrapper = styled.div`
-  color: ${({ complete }) => (complete ? "red" : "default")};
+  color: ${({ complete }) => (complete ? "green" : "default")};
 `;
