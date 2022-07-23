@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../services/authService";
 import { Button } from "@mantine/core";
 import { PATHS } from "../utils/paths";
+import { BurgerMenu } from "./BurgerMenu";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -14,8 +15,15 @@ const Navigation = () => {
     });
   };
 
+  const redirectHome = () => {
+    let homepage = "home";
+    navigate(PATHS.homepage);
+  };
+
   return (
     <NavigationBar>
+      <BurgerMenu />
+      <Button onClick={redirectHome}>Homepage</Button>
       <Button onClick={handleLogout}>Logout</Button>
     </NavigationBar>
   );

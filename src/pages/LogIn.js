@@ -3,13 +3,7 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { logInUser } from "../services/authService";
 import { PATHS } from "../utils/paths";
-import {
-  Input,
-  TextInput,
-  Button,
-  Container,
-  PasswordInput,
-} from "@mantine/core";
+import { Input, Button, Container, PasswordInput } from "@mantine/core";
 import { checkAuthUser } from "../services/authService";
 import { Lock, At } from "tabler-icons-react";
 
