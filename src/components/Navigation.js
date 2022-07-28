@@ -1,14 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../services/authService";
-import { Button } from "@mantine/core";
 import { PATHS } from "../utils/paths";
-import { BurgerMenu } from "./BurgerMenu";
+import { Drawer, Button, Burger } from "@mantine/core";
 
 const Navigation = () => {
   const navigate = useNavigate();
-
+  const [opened, setOpened] = useState(false);
   const handleLogout = () => {
     logoutUser({
       handleSuccess: () => navigate(PATHS.logIn),
@@ -16,27 +14,29 @@ const Navigation = () => {
   };
 
   const redirectHome = () => {
-    let homepage = "home";
     navigate(PATHS.homepage);
   };
 
   return (
-    <NavigationBar>
-      <BurgerMenu />
-      <Button onClick={redirectHome}>Homepage</Button>
-      <Button onClick={handleLogout}>Logout</Button>
-    </NavigationBar>
+    <>
+      <Burger
+        opened={opened}
+        onClick={() => setOpened((o) => !o)}
+        title={"cokolwiek"}
+      />
+
+      <Drawer
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title="Register"
+        padding="l"
+        size="m"
+      >
+        <Button onClick={redirectHome}>Homepage</Button>
+        <Button onClick={handleLogout}>Logout</Button>
+      </Drawer>
+    </>
   );
 };
 
 export default Navigation;
-
-const NavigationBar = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  background: #fff;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
-`;

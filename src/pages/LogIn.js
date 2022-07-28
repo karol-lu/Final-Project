@@ -57,7 +57,7 @@ export const LogIn = () => {
               icon={<Lock size={16} />}
             />
             <Button style={{ marginTop: "10px" }} type="submit">
-              Zaloguj
+              Sign in
             </Button>
           </form>
         </LoginBox>

@@ -4,6 +4,7 @@ import { Button, TextInput } from "@mantine/core";
 import { v4 as uuid } from "uuid";
 import styled from "styled-components";
 import { updateList } from "../services/listService";
+import { ShareListModal } from "./ShareListModal";
 
 export const ToDoList = ({ list }) => {
   const [listItems, setListItems] = useState([]);
@@ -53,6 +54,7 @@ export const ToDoList = ({ list }) => {
       <HeaderWrapper>
         <ListName>{list.title}</ListName>
         <Actions>
+          <ShareListModal list={list} />
           <Button onClick={clearCompleted}>Clear Completed</Button>
           <Button onClick={handleUpdate}>Save list</Button>
         </Actions>
@@ -70,6 +72,7 @@ export const ToDoList = ({ list }) => {
           listItems.map((todo, index) => {
             return (
               <ToDoListItem
+                key={todo.id}
                 todo={todo}
                 removeTask={removeTask(index)}
                 toggleCompleted={toggleCompleted(index)}

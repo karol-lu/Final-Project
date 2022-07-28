@@ -29,6 +29,7 @@ export const logoutUser = ({ handleSuccess }) => {
     .signOut()
     .then(() => {
       localStorage.removeItem("user");
+      console.log("ggg");
       typeof handleSuccess === "function" && handleSuccess();
     })
     .catch((error) => {

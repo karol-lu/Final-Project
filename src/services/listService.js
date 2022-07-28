@@ -52,7 +52,8 @@ export const fetchCurrentList = ({ callback, id }) => {
 };
 
 export const updateList = (list) => {
-  db.collection("lists")
+  return db
+    .collection("lists")
     .doc(list.id)
     .update(list)
     .then(() => {
@@ -61,4 +62,26 @@ export const updateList = (list) => {
     .catch(() => {
       toast.error("Something went wrong");
     });
+};
+
+export const shareList = async ({ list, email }) => {
+  const snapshot = await db
+    .collection("users")
+    .where("email", "==", email)
+    .get();
+  if (snapshot.empty) {
+    return [];
+  } else {
+    let data = [];
+    snapshot.forEach((doc) => {
+      data = [...data, doc.data()];
+    });
+    const user = data[0];
+    if (user) {
+      updateList({
+        ...list,
+        users: [...list.users, user],
+      });
+    }
+  }
 };
