@@ -8,6 +8,7 @@ import { Profile } from "./pages/Profile";
 import Navigation from "./components/Navigation";
 import styled from "styled-components";
 import { ListDetails } from "./pages/ListDetails";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -17,10 +18,34 @@ function App() {
         <Navigation />
         <AppContent>
           <Routes>
-            <Route exact path={PATHS.homepage} element={<Homepage />} />
-            <Route exact path={PATHS.listDetails} element={<ListDetails />} />
+            <Route
+              exact
+              path={PATHS.homepage}
+              element={
+                <PrivateRoute>
+                  <Homepage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              exact
+              path={PATHS.listDetails}
+              element={
+                <PrivateRoute>
+                  <ListDetails />
+                </PrivateRoute>
+              }
+            />
             <Route exact path={PATHS.logIn} element={<LogIn />} />
-            <Route exact path={PATHS.profile} element={<Profile />} />
+            <Route
+              exact
+              path={PATHS.profile}
+              element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </AppContent>
       </BrowserRouter>

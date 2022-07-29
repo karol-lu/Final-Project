@@ -19,7 +19,7 @@ export const MyLists = () => {
     <div>
       <AddNewListModal fetchLists={fetchLists} />
       {lists.map((list) => {
-        return <ListItem list={list} fetchLists={fetchLists} />;
+        return <ListItem key={list.id} list={list} fetchLists={fetchLists} />;
       })}
     </div>
   );

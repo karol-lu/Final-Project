@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { logInUser } from "../services/authService";
 import { PATHS } from "../utils/paths";
-import { Input, Button, Container, PasswordInput } from "@mantine/core";
+import { TextInput, Button, Container, PasswordInput } from "@mantine/core";
 import { checkAuthUser } from "../services/authService";
 import { Lock, At } from "tabler-icons-react";
 
@@ -41,8 +41,9 @@ export const LogIn = () => {
       <Wrapper>
         <LoginBox>
           <form onSubmit={handleSubmit}>
-            <Input
+            <TextInput
               placeholder="e-mail"
+              label="Email"
               icon={<At />}
               value={values.email}
               onChange={handleValueChange("email")}
@@ -56,7 +57,7 @@ export const LogIn = () => {
               required
               icon={<Lock size={16} />}
             />
-            <Button style={{ marginTop: "10px" }} type="submit">
+            <Button style={{ marginTop: "20px" }} type="submit">
               Sign in
             </Button>
           </form>
@@ -78,8 +79,7 @@ const LoginBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  height: 200px;
+  padding: 30px 5px;
   width: 100%;
   max-width: 400px;
 
