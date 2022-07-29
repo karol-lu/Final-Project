@@ -27,7 +27,9 @@ export const ShareListModal = ({ list }) => {
 
   return (
     <>
-      <Button onClick={handleModalOpen}>Share list</Button>
+      <Button size="xs" onClick={handleModalOpen}>
+        Share list
+      </Button>
       <Modal opened={opened} onClose={handleModalClose} title="Share list">
         <TextInput label="Email" value={email} onChange={handleEmailChange} />
         <Button onClick={handleShare}>Share</Button>

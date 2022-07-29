@@ -5,10 +5,14 @@ import { v4 as uuid } from "uuid";
 import styled from "styled-components";
 import { updateList } from "../services/listService";
 import { ShareListModal } from "./ShareListModal";
+import { ArrowNarrowLeft } from "tabler-icons-react";
+import { useNavigate } from "react-router";
+import { PATHS } from "../utils/paths";
 
 export const ToDoList = ({ list }) => {
   const [listItems, setListItems] = useState([]);
   const [userInput, setUserInput] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setListItems(list.items);
@@ -49,14 +53,26 @@ export const ToDoList = ({ list }) => {
     });
   };
 
+  const handleGoBack = () => {
+    navigate(PATHS.homepage);
+  };
+
   return (
     <>
+      <BackButton onClick={handleGoBack}>
+        <ArrowNarrowLeft />
+        Go Back
+      </BackButton>
       <HeaderWrapper>
         <ListName>{list.title}</ListName>
         <Actions>
           <ShareListModal list={list} />
-          <Button onClick={clearCompleted}>Clear Completed</Button>
-          <Button onClick={handleUpdate}>Save list</Button>
+          <Button size="xs" onClick={clearCompleted}>
+            Clear Completed
+          </Button>
+          <Button size="xs" onClick={handleUpdate}>
+            Save list
+          </Button>
         </Actions>
       </HeaderWrapper>
       <Form onSubmit={addTask}>
@@ -88,11 +104,10 @@ const Form = styled.form`
   display: flex;
   gap: 10px;
   align-items: center;
-  justify-content: flex-start;
+  width: 100%;
 
-  button,
-  input {
-    margin: 0;
+  .mantine-TextInput-root {
+    width: 100%;
   }
 `;
 
@@ -104,7 +119,7 @@ const Actions = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   button {
     margin: 0;
@@ -112,8 +127,6 @@ const Actions = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
 `;
@@ -121,11 +134,12 @@ const HeaderWrapper = styled.div`
 const ListName = styled.div`
   font-size: 24px;
   font-weight: bold;
+  margin-bottom: 30px;
 `;
 
-// export const elementRef = db.collection("lists").doc(user.uid);
-
-// elementRef.get().then((doc) => {
-//   const data = doc.data();
-//   return console.log(data);
-// });
+const BackButton = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin: 7px 0 20px;
+`;

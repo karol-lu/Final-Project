@@ -32,5 +32,5 @@ export default App;
 
 const AppContent = styled.div`
   width: 100%;
-  padding: 65px 15px 15px;
+  padding: 20px;
 `;

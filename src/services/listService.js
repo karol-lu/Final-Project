@@ -2,7 +2,12 @@ import toast from "react-hot-toast";
 import { db } from "../utils/firestore";
 
 export const addNewList = ({ values, callback }) => {
-  db.collection("lists").doc(values.id).set(values);
+  db.collection("lists")
+    .doc(values.id)
+    .set(values)
+    .then(() => {
+      typeof callback === "function" && callback();
+    });
 };
 
 export const fetchSharedLists = async ({ callback }) => {
@@ -84,4 +89,14 @@ export const shareList = async ({ list, email }) => {
       });
     }
   }
+};
+
+export const removeList = ({ id, callback }) => {
+  return db
+    .collection("lists")
+    .doc(id)
+    .delete()
+    .then(() => {
+      typeof callback === "function" && callback();
+    });
 };

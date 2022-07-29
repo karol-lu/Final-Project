@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, TextInput } from "@mantine/core";
 import { v4 as uuid } from "uuid";
 import { addNewList } from "../services/listService";
+import styled from "styled-components";
 
 const defaultValues = {
   title: "",
@@ -12,7 +13,7 @@ const defaultValues = {
   id: uuid(),
 };
 
-export const AddNewListModal = () => {
+export const AddNewListModal = ({ fetchLists }) => {
   const [opened, setOpened] = useState(false);
   const [title, setTitle] = useState("");
 
@@ -30,20 +31,46 @@ export const AddNewListModal = () => {
 
   const handleAddList = () => {
     const creator = JSON.parse(localStorage.getItem("user"));
-    addNewList({ values: { ...defaultValues, title, creator } });
+    addNewList({
+      values: {
+        ...defaultValues,
+        title,
+        creator,
+      },
+      callback: () => {
+        fetchLists();
+        handleModalClose();
+      },
+    });
   };
 
   return (
     <>
-      <Button onClick={handleModalOpen}>Add new list</Button>
+      <ButtonWrapper>
+        <Button size="xs" onClick={handleModalOpen}>
+          Add new list
+        </Button>
+      </ButtonWrapper>
       <Modal opened={opened} onClose={handleModalClose} title="Add new list">
-        <TextInput
-          label="list name"
-          value={title}
-          onChange={handleTitleChange}
-        />
+        <InputWrapper>
+          <TextInput
+            label="List name"
+            value={title}
+            onChange={handleTitleChange}
+          />
+        </InputWrapper>
         <Button onClick={handleAddList}>Add list</Button>
       </Modal>
     </>
   );
 };
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+`;
+
+const InputWrapper = styled.div`
+  margin-bottom: 20px;
+`;
